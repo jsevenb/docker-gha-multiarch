@@ -26,6 +26,13 @@ jobs:
       # Get the repository's code
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: true
+      # Update references
+      - name: Git submodule update
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
       # https://github.com/docker/setup-qemu-action
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
