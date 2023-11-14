@@ -47,7 +47,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Docker meta
-        id: 123 # you'll use this in the next step
+        id: metaid # you'll use this in the next step
         uses: docker/metadata-action@v3
         with:
           # list of Docker images to use as base name for tags
@@ -68,6 +68,6 @@ jobs:
           context: ./docker
           platforms: linux/amd64,linux/arm/v7
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.123.outputs.tags }}
-          labels: ${{ steps.123.outputs.labels }}
+          tags: ${{ steps.metaid.outputs.tags }}
+          labels: ${{ steps.metaid.outputs.labels }}
 
